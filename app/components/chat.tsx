@@ -105,25 +105,25 @@ export function SessionConfigModel(props: { onClose: () => void }) {
           />,
         ]}
       >
-        <MaskConfig
-          mask={session.mask}
-          updateMask={(updater) => {
-            const mask = { ...session.mask };
-            updater(mask);
-            chatStore.updateCurrentSession((session) => (session.mask = mask));
-          }}
-          shouldSyncFromGlobal
-          extraListItems={
-            session.mask.modelConfig.sendMemory ? (
-              <ListItem
-                title={`${Locale.Memory.Title} (${session.lastSummarizeIndex} of ${session.messages.length})`}
-                subTitle={session.memoryPrompt || Locale.Memory.EmptyContent}
-              ></ListItem>
-            ) : (
-              <></>
-            )
-          }
-        ></MaskConfig>
+        {/*<MaskConfig*/}
+        {/*  mask={session.mask}*/}
+        {/*  updateMask={(updater) => {*/}
+        {/*    const mask = { ...session.mask };*/}
+        {/*    updater(mask);*/}
+        {/*    chatStore.updateCurrentSession((session) => (session.mask = mask));*/}
+        {/*  }}*/}
+        {/*  shouldSyncFromGlobal*/}
+        {/*  extraListItems={*/}
+        {/*    session.mask.modelConfig.sendMemory ? (*/}
+        {/*      <ListItem*/}
+        {/*        title={`${Locale.Memory.Title} (${session.lastSummarizeIndex} of ${session.messages.length})`}*/}
+        {/*        subTitle={session.memoryPrompt || Locale.Memory.EmptyContent}*/}
+        {/*      ></ListItem>*/}
+        {/*    ) : (*/}
+        {/*      <></>*/}
+        {/*    )*/}
+        {/*  }*/}
+        {/*></MaskConfig>*/}
       </Modal>
     </div>
   );
@@ -137,7 +137,7 @@ function PromptToast(props: {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
   const context = session.mask.context;
-
+  console.log("[CONTEXT]", context);
   return (
     <div className={chatStyle["prompt-toast"]} key="prompt-toast">
       {props.showToast && (
@@ -759,13 +759,13 @@ export function Chat() {
                 }
               >
                 <div className={styles["chat-message-container"]}>
-                  <div className={styles["chat-message-avatar"]}>
-                    {message.role === "user" ? (
-                      <Avatar avatar={config.avatar} />
-                    ) : (
-                      <MaskAvatar mask={session.mask} />
-                    )}
-                  </div>
+                  {/*<div className={styles["chat-message-avatar"]}>*/}
+                  {/*  {message.role === "user" ? (*/}
+                  {/*    <Avatar avatar={config.avatar} />*/}
+                  {/*  ) : (*/}
+                  {/*    <MaskAvatar mask={session.mask} />*/}
+                  {/*  )}*/}
+                  {/*</div>*/}
                   {showTyping && (
                     <div className={styles["chat-message-status"]}>
                       {Locale.Chat.Typing}

@@ -40,6 +40,7 @@ export function auth(req: NextRequest) {
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
+  // Access code. must match one of the codes
   if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
     return {
       error: true,
@@ -52,6 +53,7 @@ export function auth(req: NextRequest) {
     const apiKey = serverConfig.apiKey;
     if (apiKey) {
       console.log("[Auth] use system api key");
+      console.log("[Auth] api key is " + apiKey);
       req.headers.set("Authorization", `Bearer ${apiKey}`);
     } else {
       console.log("[Auth] admin did not provide an api key");
