@@ -42,10 +42,11 @@ export function auth(req: NextRequest) {
 
   // Access code. must match one of the codes
   if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
-    return {
-      error: true,
-      msg: !accessCode ? "empty access code" : "wrong access code",
-    };
+    console.log("[Auth] no access code provided. Bypass for now");
+    // return {
+    //   error: true,
+    //   msg: !accessCode ? "empty access code" : "wrong access code",
+    // };
   }
 
   // if user does not provide an api key, inject system api key
